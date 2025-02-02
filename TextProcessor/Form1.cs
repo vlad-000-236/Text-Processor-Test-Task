@@ -82,20 +82,6 @@ namespace TextProcessor
                 }
                 txtResult.Text = $"Файл сохранен по пути: {filePath}";
             }
-
-
-            /*
-            // Обработка даты
-            if (DateTime.TryParseExact(txtDate.Text, "dd.MM.yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime date))
-            {
-                txtResult.AppendText($"\nДата в формате 'дд-мм-гггг': {date:dd-MM-yyyy}");
-                txtResult.AppendText($"\nДень недели: {date.DayOfWeek}");
-                txtResult.AppendText($"\nРазница в днях от текущей даты: {(DateTime.Now - date).Days} дней");
-            }
-            else
-            {
-                MessageBox.Show("Невозможно распознать дату. Пожалуйста, введите дату в формате дд.мм.гггг.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }*/
         }
 
         private string SwapFirstLastChar(string word)
@@ -109,6 +95,7 @@ namespace TextProcessor
             return new string(charArray);
         }
 
+        // Сортируем файлы в выбранной папке
         private void BtnSelectFolder_Click(object sender, EventArgs e)
         {
             using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
@@ -148,6 +135,7 @@ namespace TextProcessor
             }
         }
 
+        // Очищаем папку по выбранному пути
         private void BtnClearFolder_Click(object sender, EventArgs e)
         {
             using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
