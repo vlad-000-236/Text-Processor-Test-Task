@@ -71,7 +71,7 @@
             this.btnSelectFolder.Name = "btnSelectFolder";
             this.btnSelectFolder.Size = new System.Drawing.Size(111, 35);
             this.btnSelectFolder.TabIndex = 3;
-            this.btnSelectFolder.Text = "Отсортировать файлы";
+            this.btnSelectFolder.Text = "Выбрать папку";
             this.btnSelectFolder.UseVisualStyleBackColor = true;
             // 
             // btnClearFolder

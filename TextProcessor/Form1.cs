@@ -22,7 +22,7 @@ namespace TextProcessor
 
         }
 
-        // Создаём папку для вывода ".тхт" файла
+        // Создание папки для вывода ".тхт" файла
         private static string FoldCreator()
         {
             string folderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "TextProcessorFiles");
@@ -43,11 +43,6 @@ namespace TextProcessor
             if (DateTime.TryParseExact(inputText, "dd.MM.yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime date))
             {
                 txtResult.Clear();
-                /*
-                txtResult.AppendText($"Дата в формате 'дд-мм-гггг': {date:dd-MM-yyyy}\n");
-                txtResult.AppendText($"День недели: {date.DayOfWeek}\n");
-                txtResult.AppendText($"Разница в днях от текущей даты: {(DateTime.Now - date).Days} дней\n");*/
-
                 txtResult.Text = $"\nДата в формате 'дд-мм-гггг': {date:dd-MM-yyyy}" +
                                  $"\n День недели: {date.DayOfWeek}" +
                                  $"\n Разница в днях от текущей даты: {(DateTime.Now - date).Days} дней";
@@ -58,28 +53,27 @@ namespace TextProcessor
                 MessageBox.Show("Невозможно распознать дату. Данный текст будет обработан, как стандартная строка.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 // Удаление знаков припенания
-                string punctuationReplacer = Regex.Replace(inputText, "[-.?!)(,:]", "");
+                string punctuationReplacer = Regex.Replace(inputText, "[-.?!)(,:;]", "");
 
-                // Делаем первую букву каждого слова заглавной
+                // Изменение первой буквы каждого слова на заглавную
                 string capitalizedText = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(punctuationReplacer.ToLower());
 
-                // Поменяем местами первую и последнюю букву в каждом слове
+                // Перестановка местами первой и последней буквы в каждом слове
                 string swappedText = string.Join(" ", capitalizedText.Split(' ').Select(SwapFirstLastChar));
 
-                // Удаление пробелов и переносов строк
-                string trimmedText = Regex.Replace(swappedText, @"\s+", "");
-
-                // Получаем массив слов без знаков препинания и выводим в алфавитном порядке
-                var words = trimmedText.Split(new[] { ' ', '.', ',', '!', '?', ';', ':', '"' }, StringSplitOptions.RemoveEmptyEntries)
+                // Получение массива слов без пробелов и знаков переноса строки; выводи слов осуществляется в алфавитном порядке
+                var words = swappedText.Split(new[] { ' ', '\n' }, StringSplitOptions.RemoveEmptyEntries)
                                         .Distinct()
                                         .OrderBy(w => w)
                                         .ToArray();
 
-                // Сохраняем текст в файл
+                // Сохрание текста в файл
+                StreamWriter str = new StreamWriter(filePath);
                 for (int a = 0; a < words.Length; a++)
                 {
-                    File.WriteAllText(filePath, words[a]);
+                    str.WriteLine(words[a]);
                 }
+                str.Close();
                 txtResult.Text = $"Файл сохранен по пути: {filePath}";
             }
         }
@@ -95,7 +89,7 @@ namespace TextProcessor
             return new string(charArray);
         }
 
-        // Сортируем файлы в выбранной папке
+        // Сортировка файлов в выбранной папке
         private void BtnSelectFolder_Click(object sender, EventArgs e)
         {
             using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
@@ -129,13 +123,13 @@ namespace TextProcessor
                 }
                 catch (Exception ex)
                 {
-                    // Игнорируем ошибки и продолжаем
+                    // Игнорирование ошибок и продолжение выполнения сортировки
                     Console.WriteLine($"Ошибка при перемещении {file}: {ex.Message}");
                 }
             }
         }
 
-        // Очищаем папку по выбранному пути
+        // Очистка папки по выбранному пути
         private void BtnClearFolder_Click(object sender, EventArgs e)
         {
             using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
