@@ -18,3 +18,7 @@ D:\C#_projects\Text-Processor-Test-Task\TextProcessor\obj\Debug\TextProcessor.cs
 D:\C#_projects\Text-Processor-Test-Task\TextProcessor\obj\Debug\TextProcessor.csproj.CoreCompileInputs.cache
 D:\C#_projects\Text-Processor-Test-Task\TextProcessor\obj\Debug\TextProcessor.exe
 D:\C#_projects\Text-Processor-Test-Task\TextProcessor\obj\Debug\TextProcessor.pdb
+D:\C#_projects\Text-Processor-Test-Task\TextProcessor\bin\Debug\TextProcessor.exe.manifest
+D:\C#_projects\Text-Processor-Test-Task\TextProcessor\bin\Debug\TextProcessor.application
+D:\C#_projects\Text-Processor-Test-Task\TextProcessor\obj\Debug\TextProcessor.exe.manifest
+D:\C#_projects\Text-Processor-Test-Task\TextProcessor\obj\Debug\TextProcessor.application
